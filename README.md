@@ -18,15 +18,30 @@ sudo dpkg -i voice-keyboard_0.1.0_amd64.deb
 sudo apt-get install -f  # Fix dependencies if needed
 ```
 
-3. Set your Deepgram API key:
-```bash
-export DEEPGRAM_API_KEY="your-api-key-here"
-# Add to ~/.bashrc or ~/.zshrc for persistence
-```
+3. Configure your Deepgram API key (choose one method):
+
+   **Method 1 - Via config file (recommended):**
+   ```bash
+   # Edit the config file
+   nano ~/.config/voice-keyboard/config.toml
+
+   # Add your API key:
+   # api_key = "your-deepgram-api-key-here"
+   ```
+
+   **Method 2 - Via environment variable:**
+   ```bash
+   export DEEPGRAM_API_KEY="your-api-key-here"
+   # Add to ~/.bashrc or ~/.zshrc for persistence
+   ```
 
 4. Run:
 ```bash
+# Test STT functionality
 voice-keyboard-launcher --test-stt
+
+# Or launch GUI (default)
+voice-keyboard-launcher
 ```
 
 Or launch from your application menu.
