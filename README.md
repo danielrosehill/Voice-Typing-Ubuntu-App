@@ -50,20 +50,26 @@ The run script will automatically:
 
 ### Building a Debian Package
 
-To build your own `.deb` package:
+Use the unified `package.sh` script for all package management:
 
 ```bash
 # Build only
-./build-deb.sh
+./package.sh
 
 # Build and install
-./build-deb.sh --install
+./package.sh install
 
 # Build and reinstall (removes old version first)
-./build-deb.sh --reinstall
+./package.sh reinstall
+
+# Update version and build
+./package.sh update 0.2.0
+
+# Update version and install
+./package.sh update 0.2.0 --install
 
 # Show help
-./build-deb.sh --help
+./package.sh --help
 ```
 
 See [PACKAGING.md](PACKAGING.md) for detailed packaging documentation.
@@ -84,12 +90,13 @@ Voice-Typing-Ubuntu-App/
 │   │   ├── audio_input.rs # Audio capture via CPAL
 │   │   ├── stt_client.rs  # Deepgram WebSocket client
 │   │   ├── virtual_keyboard.rs # Virtual keyboard & typing logic
-│   │   └── input_event.rs # Linux input event definitions
+│   │   ├── input_event.rs # Linux input event definitions
+│   │   ├── api_spend.rs   # API cost tracking
+│   │   └── gui/           # Qt GUI components
 │   ├── Cargo.toml         # Dependencies and build config
 │   └── target/            # Build artifacts
-├── build-deb.sh           # Build Debian package
-├── update-package.sh      # Update version and rebuild
-├── run.sh                 # Convenience script to build and run
+├── package.sh             # Unified package management (build/install/update)
+├── run.sh                 # Development script to build and run
 ├── CLAUDE.md              # AI assistant context
 ├── PACKAGING.md           # Debian packaging documentation
 └── README.md              # This file
